@@ -109,9 +109,9 @@ namespace Jira.SDK
 			return issue;
 		}
 
-        public List<Issue> SearchIssues(String jql, Int32 maxResults = 700)
+        public List<Issue> SearchIssues(String jql, Int32 maxResults = 700, bool withExpand = true)
         {
-            List<Issue> issues = Client.SearchIssues(jql, maxResults);
+            List<Issue> issues = Client.SearchIssues(jql, maxResults, withExpand);
             issues.ForEach(issue => issue.SetJira(this));
             return issues;
         }

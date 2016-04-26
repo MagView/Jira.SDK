@@ -24,11 +24,11 @@ namespace Jira.SDK.Domain
         public String JQL { get; set; }
 
         private List<Issue> _issues;
-        public List<Issue> GetIssues(Int32 maxResults = 700)
+        public List<Issue> GetIssues(Int32 maxResults = 700, bool withExpand=true)
         {
             if (_issues == null)
             {
-                _issues = _jira.Client.SearchIssues(this.JQL, maxResults);
+                _issues = _jira.Client.SearchIssues(this.JQL, maxResults, withExpand);
                 _issues.ForEach(issue => issue.SetJira(this._jira));
             }
             return _issues;
